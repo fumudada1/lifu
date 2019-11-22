@@ -1,0 +1,103 @@
+﻿@using lifu.Models
+@model lifu.Models.Service
+
+@{
+    ViewBag.Title = "客戶服務維護";
+}
+
+<h2>客戶服務維護</h2>
+
+    @using (Html.BeginForm()) {
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Service</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Name,new { placeholder=ModelsAttributeHelper<lifu.Models.Service>.GetDisplayName("Name") })
+           
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TelphoneAM)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.TelphoneAM,new { placeholder=ModelsAttributeHelper<lifu.Models.Service>.GetDisplayName("TelphoneAM") })
+           
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TelphonePM)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.TelphonePM,new { placeholder=ModelsAttributeHelper<lifu.Models.Service>.GetDisplayName("TelphonePM") })
+           
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Mobile)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Mobile,new { placeholder=ModelsAttributeHelper<lifu.Models.Service>.GetDisplayName("Mobile") })
+           
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Email,new { placeholder=ModelsAttributeHelper<lifu.Models.Service>.GetDisplayName("Email") })
+           
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ShortMemo)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.ShortMemo,new { @style = "height: 150px",placeholder=ModelsAttributeHelper<lifu.Models.Service>.GetDisplayName("ShortMemo") })
+            @Html.ValidationMessageFor(model => model.ShortMemo)
+           
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Replay)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Replay, new { @style = "height: 150px", placeholder = ModelsAttributeHelper<lifu.Models.Service>.GetDisplayName("Replay") })
+            @Html.ValidationMessageFor(model => model.Replay)
+
+        </div>
+
+        @Html.HiddenFor(model => model.Poster)
+            @Html.HiddenFor(model => model.InitDate)
+            @Html.HiddenFor(model => model.UpdateDate)
+        <p>
+            <input type="submit" value="儲存" />
+        </p>
+    </fieldset>
+}
+@using (Html.BeginForm("SendMail","Service"))
+{
+
+    @Html.AntiForgeryToken()
+     @Html.Hidden("Id",Model.Id)
+    @Html.Hidden("Email", Model.Email)
+            @Html.Hidden("Replay", Model.Replay)
+    <input type="submit" value="寄信" />
+    <span>請先儲存再寄信</span>
+}
+<div>
+    @Html.ActionLink("回列表", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

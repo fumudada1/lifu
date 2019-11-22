@@ -1,0 +1,61 @@
+﻿@model lifu.Models.News
+@{
+    ViewBag.Title = "最新消息";
+}
+
+<div id="content">
+
+    <!-------------------------Left Start------------------------->
+    <div id="left">
+        <img src="~/images/subject_02.jpg" alt="最新消息" width="165" height="103" />
+    </div>
+
+    <!-------------------------Left End------------------------->
+    <!-------------------------Right Start------------------------->
+    <div id="right">
+
+        <!-------------------------主要內容 Start------------------------->
+
+        <div class="pathlink">
+            首頁 > 最新消息
+        </div>
+
+        <div class="ban_photo">
+            <img src="~/images/newsban.jpg" width="771" height="125" />
+        </div>
+        <!-- 列表 Start -->
+        <div class="newsbox">
+            <ul>
+                <li>
+                    <div class="newsbox_date">
+                        <p>@(Convert.ToDateTime(Model.InitDate).Year).@(Convert.ToDateTime(Model.InitDate).Month)</p>
+                        <span>@(Convert.ToDateTime(Model.InitDate).Day)</span>
+                    </div>
+                    <div class="newsbox_show">
+                        <h3>@Model.Subject</h3>
+                        <p>
+                           @Html.Raw(UIUtility.Txt2Html(Model.ShortMemo))
+                        </p>
+                        <div class="ban_photo">
+                            @if (Model.UpImageUrl != null)
+                            {
+                                <img src="~/upfiles/images/@(Model.UpImageUrl)" style="width: 567px" alt="@Model.Subject" />
+                                
+                            }
+                           
+                        </div>
+                        <div class="add_btn">
+                            <div class="btn_back"><a href="javascript:window.history.back();">返回列表</a></div>
+                        </div>
+
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- 列表 End -->
+        <!-------------------------主要內容 End------------------------->
+
+    </div>
+    <!-------------------------Right End------------------------->
+
+</div>

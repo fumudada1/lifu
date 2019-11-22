@@ -1,0 +1,88 @@
+﻿
+@model lifu.Models.Unit
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+    <script>
+        $(document).ready(function() {
+            $(".datepicker").datepicker();
+        });
+    </script>
+}
+
+<h2>編輯</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Unit</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Subject)
+        </div>
+        <div class="editor-field">
+             @Html.EditorFor(model => model.Subject)
+            @Html.ValidationMessageFor(model => model.Subject)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Alias)
+        </div>
+        <div class="editor-field">
+             @Html.EditorFor(model => model.Alias)
+            @Html.ValidationMessageFor(model => model.Alias)
+        </div>
+
+         @*<div class="editor-label">
+            @Html.LabelFor(model => model.ListNum)
+        </div>
+        <div class="editor-field">
+             @Html.EditorFor(model => model.ListNum)
+            @Html.ValidationMessageFor(model => model.ListNum)
+        </div>
+
+       <div class="editor-label">
+            @Html.LabelFor(model => model.Poster)
+        </div>
+        <div class="editor-field">
+             @Html.EditorFor(model => model.Poster)
+            @Html.ValidationMessageFor(model => model.Poster)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Updater)
+        </div>
+        <div class="editor-field">
+             @Html.EditorFor(model => model.Updater)
+            @Html.ValidationMessageFor(model => model.Updater)
+        </div>*@
+        @Html.HiddenFor(model => model.Poster)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.InitDate)
+        </div>
+        <div class="editor-field">
+            @* @Html.EditorFor 沒辦法去設定HTML attr 的屬性，需要改成 @Html.TextBoxFor  *@
+            @Html.TextBoxFor(model => model.InitDate,"{0:d}",new {@class="datepicker",target="" })
+            @Html.ValidationMessageFor(model => model.InitDate)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

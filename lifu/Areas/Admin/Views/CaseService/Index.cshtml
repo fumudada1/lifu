@@ -1,0 +1,115 @@
+﻿@using MvcPaging
+@model MvcPaging.IPagedList<lifu.Models.CaseService>
+
+@{
+    ViewBag.Title = "索取資料";
+}
+
+<h2>索取資料</h2>
+
+<p style="display: none">
+    @Html.ActionLink("新增", "Create")
+</p>
+
+    @using (Html.BeginForm())
+{
+<div>
+                 @Html.DisplayNameFor(model => model.FirstOrDefault().CostId):@Html.DropDownList("CostId","請選擇") 
+                     @Html.DisplayNameFor(model => model.FirstOrDefault().AreaId):@Html.DropDownList("AreaId","請選擇") 
+                     @Html.DisplayNameFor(model => model.FirstOrDefault().TypeId):@Html.DropDownList("TypeId","請選擇") 
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Name):<input id="Name" name="Name" type="search" value="@ViewBag.Name" />
+                    
+            </div>
+ <div>
+        <input type="submit" value="搜尋" />
+    </div>
+
+    
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Data)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Reserved)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Cost.Subject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Area.Subject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Type.Subject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Telphone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Mobile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Email)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().InitDate)
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Reserved)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cost.Subject)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Area.Subject)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type.Subject)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telphone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mobile)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.InitDate)
+        </td>
+       
+        <td>
+           @* @Html.ActionLink("編輯", "Edit", new { id=item.Id }) |*@
+            @Html.ActionLink("內容", "Details", new { id=item.Id }) | 
+            @Html.ActionLink("刪除", "Delete", new { id=item.Id })
+            @Html.Hidden("ID",item.Id)
+        </td>
+    </tr>
+}
+
+</table>
+
+<div class="pager">
+    @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+</div>
+

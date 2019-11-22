@@ -1,0 +1,181 @@
+﻿@using lifu.Models
+@model lifu.Models.CaseService
+
+@{
+    ViewBag.Title = "新增";
+}
+
+<h2>新增</h2>
+
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @ViewBag.Message
+    <fieldset>
+        <legend>CaseService</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Data)
+
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Data, new { placeholder = ModelsAttributeHelper<lifu.Models.CaseService>.GetDisplayName("Data") })
+            @Html.ValidationMessageFor(model => model.Data)
+
+
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Reserved)
+
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Reserved, new { placeholder = ModelsAttributeHelper<lifu.Models.CaseService>.GetDisplayName("Reserved") })
+            @Html.ValidationMessageFor(model => model.Reserved)
+
+
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CostId)
+
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CostId")
+            @Html.ValidationMessageFor(model => model.CostId)
+
+
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AreaId)
+
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("AreaId")
+            @Html.ValidationMessageFor(model => model.AreaId)
+
+
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TypeId)
+
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("TypeId")
+            @Html.ValidationMessageFor(model => model.TypeId)
+
+
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Name, new { placeholder = ModelsAttributeHelper<lifu.Models.CaseService>.GetDisplayName("Name") })
+            @Html.ValidationMessageFor(model => model.Name)
+
+
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Gender)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Gender, new SelectList(Enum.GetValues(typeof(GenderType))))
+            @Html.ValidationMessageFor(model => model.Gender)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Birthday)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Birthday, "{0:d}", new { @class = "datepicker", target = "" })
+            @Html.ValidationMessageFor(model => model.Birthday)
+
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Telphone)
+
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Telphone, new { placeholder = ModelsAttributeHelper<lifu.Models.CaseService>.GetDisplayName("Telphone") })
+            @Html.ValidationMessageFor(model => model.Telphone)
+
+
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Mobile)
+
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Mobile, new { placeholder = ModelsAttributeHelper<lifu.Models.CaseService>.GetDisplayName("Mobile") })
+            @Html.ValidationMessageFor(model => model.Mobile)
+
+
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Email, new { placeholder = ModelsAttributeHelper<lifu.Models.CaseService>.GetDisplayName("Email") })
+            @Html.ValidationMessageFor(model => model.Email)
+
+
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address)
+
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Address, new { placeholder = ModelsAttributeHelper<lifu.Models.CaseService>.GetDisplayName("Address") })
+            @Html.ValidationMessageFor(model => model.Address)
+
+
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Information)
+
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Information, new { placeholder = ModelsAttributeHelper<lifu.Models.CaseService>.GetDisplayName("Information") })
+            @Html.ValidationMessageFor(model => model.Information)
+
+
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MoerInformation)
+
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.MoerInformation, new SelectList(Enum.GetValues(typeof(lifu.Models.MoreInformation))))
+            @Html.ValidationMessageFor(model => model.MoerInformation)
+
+
+        </div>
+
+        <p>
+            <input type="submit" value="新增" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("回列表", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+}

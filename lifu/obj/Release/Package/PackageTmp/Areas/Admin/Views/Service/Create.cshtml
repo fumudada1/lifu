@@ -1,0 +1,98 @@
+﻿@using lifu.Models
+@model lifu.Models.Service
+
+@{
+    ViewBag.Title = "新增";
+}
+
+<h2>新增</h2>
+
+    @using (Html.BeginForm()) {
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @ViewBag.Message
+    <fieldset>
+        <legend>Service</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Name,new { placeholder=ModelsAttributeHelper<lifu.Models.Service>.GetDisplayName("Name") })
+            @Html.ValidationMessageFor(model => model.Name)
+       
+            
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TelphoneAM)
+
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.TelphoneAM,new { placeholder=ModelsAttributeHelper<lifu.Models.Service>.GetDisplayName("TelphoneAM") })
+            @Html.ValidationMessageFor(model => model.TelphoneAM)
+       
+            
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TelphonePM)
+
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.TelphonePM,new { placeholder=ModelsAttributeHelper<lifu.Models.Service>.GetDisplayName("TelphonePM") })
+            @Html.ValidationMessageFor(model => model.TelphonePM)
+       
+            
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Mobile)
+
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Mobile,new { placeholder=ModelsAttributeHelper<lifu.Models.Service>.GetDisplayName("Mobile") })
+            @Html.ValidationMessageFor(model => model.Mobile)
+       
+            
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Email,new { placeholder=ModelsAttributeHelper<lifu.Models.Service>.GetDisplayName("Email") })
+            @Html.ValidationMessageFor(model => model.Email)
+       
+            
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ShortMemo)
+
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.ShortMemo,new { @style = "height: 150px",placeholder=ModelsAttributeHelper<lifu.Models.Service>.GetDisplayName("ShortMemo") })
+            @Html.ValidationMessageFor(model => model.ShortMemo)
+       
+            
+        </div>
+
+        <p>
+            <input type="submit" value="新增" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("回列表", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+}

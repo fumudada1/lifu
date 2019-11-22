@@ -1,0 +1,67 @@
+﻿@using lifu.Models
+@using SSB.Web.Mvc.Html
+@model List<Area>
+@{
+    ViewBag.Title = "經典個案";
+}
+
+<div id="content">
+
+    <!-------------------------Left Start------------------------->
+    <div id="left">
+        <img src="images/subject_03.jpg" alt="經典個案" width="162" height="103" />
+
+        <!-- 第1層 Start -->
+        <div class="lefmenu01">
+            <ul>
+                @foreach (var area in Model)
+                {
+                    if (area.Caseses.Any(x => x.Status == CaseStatus.經典個案))
+                    {
+                    <li>
+                        <a href="~/Classic/Diagram/@area.Id">
+                            @area.Subject
+                        </a>
+                        <!-- 第2層 Start -->
+                        <ul>
+                            @foreach (var item in area.Caseses.Where(x => x.Status == CaseStatus.經典個案))
+                            {
+                                <li><a href="~/Classic/Service/@item.Id">@item.Subject</a></li>
+                            }
+                        </ul>
+                        <!-- 第2層 End -->
+                    </li>
+                    }
+
+                }
+
+
+
+
+            </ul>
+        </div>
+        <!-- 第1層 End -->
+
+    </div>
+
+    <!-------------------------Left End------------------------->
+    <!-------------------------Right Start------------------------->
+    <div id="right">
+
+        <!-------------------------主要內容 Start------------------------->
+        <div class="pathlink">
+            首頁 > 經典個案 > 極品
+        </div>
+
+        <!--地圖 Start-->
+        <div class="classic_map">
+            <img src="images/classic_map.jpg" width="771" height="648" />
+        </div>
+        <!--地圖 End-->
+        <!-------------------------主要內容 End------------------------->
+
+    </div>
+    <!-------------------------Right End------------------------->
+
+</div>
+

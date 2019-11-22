@@ -1,0 +1,73 @@
+﻿@using lifu.Models
+@model lifu.Models.CaseDiagram
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>新增</title>
+</head>
+<body>
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    @{
+        if (ViewBag.close == "true")
+        {
+            <script>
+                $(document).ready(function () {
+                    parent.$.fn.colorbox.close();
+                    parent.location = '@Url.Action("Edit", "Cases", new { Id = ViewBag.CaseId, type = "2" })';
+                });
+            </script>
+        }
+    }
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" })) {
+    
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @ViewBag.Message
+        <fieldset>
+            <legend>CaseDiagram</legend>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Subject)
+    
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Subject,new { placeholder=ModelsAttributeHelper<lifu.Models.CaseDiagram>.GetDisplayName("Subject") })
+                @Html.ValidationMessageFor(model => model.Subject)
+           
+                
+            </div>
+    
+            @Html.HiddenFor(x => x.CaseId)
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UpPicUrl)
+    
+            </div>
+            <div class="editor-field">
+                <input type="file" name="UpPicUrls" />
+           
+                
+            </div>
+    
+                 @Html.Hidden("ListNum","0")
+                 @Html.Hidden("Counter", "0")
+
+    
+            <p>
+                <input type="submit" value="新增" />
+            </p>
+        </fieldset>
+    }
+    
+  
+</body>
+</html>

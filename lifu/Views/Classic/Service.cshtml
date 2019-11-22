@@ -1,0 +1,97 @@
+﻿@using lifu.Models
+@model lifu.Models.Cases
+@{
+    ViewBag.Title = "Service";
+    List<Area> areas = ViewBag.Areas;
+}
+
+<div id="content"> 
+
+<!-------------------------Left Start------------------------->    
+    <div id="left">
+    <img src="~/images/subject_03.jpg" alt="經典個案" width="162" height="103" />
+
+  <!-- 第1層 Start -->
+  <div class="lefmenu01">
+            <ul>
+                @foreach (var area in areas)
+                {
+                     if (area.Caseses.Any(x => x.Status == CaseStatus.經典個案))
+                    {
+                    <li>
+                        <a href="~/Classic/Diagram/@area.Id">
+                            @area.Subject
+                        </a>
+                        <!-- 第2層 Start -->
+                        <ul>
+                            @foreach (var item in area.Caseses.Where(x => x.Status == CaseStatus.經典個案).OrderByDescending(x => x.EndDate))
+                            {
+                                <li><a href="~/Classic/Service/@item.Id">@item.Subject</a></li>
+                            }
+                        </ul>
+                        <!-- 第2層 End -->
+                    </li>
+                    }
+                }
+
+            </ul>
+        </div>
+  <!-- 第1層 End -->
+
+    </div>
+
+<!-------------------------Left End------------------------->
+
+<!-------------------------Right Start------------------------->    
+     <div id="right">
+     
+<!-------------------------主要內容 Start-------------------------> 
+	<div class="pathlink">
+		首頁 > 經典個案 > @Model.Subject
+	</div>
+
+	<div class="ban_tite">
+     	<p>@Model.Area.Subject / <span>@Model.Subject</span></p>
+     </div>
+        
+	
+
+       @if (Model.Pictureses.Count > 0)
+        {
+             <!--相簿 Start-->
+        <div class="bigbox01">
+            <div id="gallery" class="ad-gallery">
+                <div class="ad-image-wrapper"></div>
+                <!--<div class="ad-controls" ></div>-->
+                <div class="ad-nav">
+                    <div class="ad-thumbs">
+                        <ul class="ad-thumb-list">
+                            @foreach (var item in Model.Pictureses)
+                            {
+                                <li>
+                                    <a href="~/upfiles/images/@item.UpPicUrl">
+                                        <img src="~/upfiles/images/s@(item.UpPicUrl)" alt="@item.Subject" class="image0">
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--相簿 End-->
+        }
+    
+<!-------------------------主要內容 End------------------------->    
+    
+     </div>
+<!-------------------------Right End------------------------->    
+    
+    </div>
+@section Scripts {
+   <script type="text/javascript" src="~/js/jquery.ad-gallery.js"></script>
+<script type="text/javascript" src="~/js/list_detail.js"></script>
+<link rel="stylesheet" type="text/css" href="~/js/jquery.ad-gallery.css" />
+
+}

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<menu>
+  <Modules Title="帳號管理" Controller="Member" Action="Index" Value="A01" Icon="icon-user" />
+  <Modules Title="最新消息管理" Controller="News" Action="Index"  Value="B01" Icon="icon-list-alt" />
+  <Modules Title="新案推薦管理" Controller="Cases" Action="Index"  Value="C01" Icon="icon-book" />
+  <Modules Title="經典個案管理" Controller="Cases" Action="Old"  Value="D01" Icon="icon-building" />
+  <Modules Title="索取資料" Controller="CaseService" Action="Index"  Value="E01" Icon="icon-folder-open" />
+  <Modules Title="客戶服務" Controller="Service" Action="Index"  Value="F01" Icon="icon-group" />
+  <Modules Title="預算設定" Controller="CaseServiceCost" Action="Index"  Value="E02" Icon="icon-cog" />
+  <Modules Title="坪數設定" Controller="CaseServiceArea" Action="Index"  Value="E03" Icon="icon-cog" />
+  <Modules Title="格局設定" Controller="CaseServiceType" Action="Index"  Value="E04" Icon="icon-cog" />
+  <Modules Title="案件區域設定" Controller="Area" Action="Index"  Value="C02" Icon="icon-cog" />
+  
+  
+</menu>

@@ -1,0 +1,141 @@
+﻿.box001 {
+	background-image: url(../images/photobg.jpg);
+	background-repeat: no-repeat;
+	float: left;
+	height: 613px;
+	width: 720px;
+	padding-left: 25px;
+	background-position: 44px 0px;
+	position: relative;
+	padding-bottom: 200px;
+}
+.container{
+	top:50px;
+	left:50%;
+	margin-top: 0px;
+	margin-left: 18px;
+	float: left;
+}
+
+.holder {
+	padding-left: 18px;
+}
+
+.zoomer .holder{
+
+
+
+}
+
+.zoomer .holder .image{
+	height: 522px;
+	width: 650px;
+	overflow: hidden;
+}.zoomer .holder .console{
+	height:25px;
+	padding-top:7px
+}.zoomer .holder .console .left{margin:0;float:left;padding-left:6px}.zoomer .holder .console .right{
+	float:right;
+	padding-right:2px;
+	margin-top: -300;
+	z-index: 5000;
+	position: absolute;
+	left: 679px;
+	top: 84px;
+}.zoomer .holder .console li{list-style-type:none;float:left;margin-right:6px}.zoomer .holder .console li span{float:left;cursor:pointer}.zoomer   .thumbs   img{
+	float:left;
+	margin-right:5px;
+	margin-top:5px;
+	cursor:pointer;
+}
+
+.floorplan {
+	float: left;
+	width: 307px;
+	border: 1px solid #ae977b;
+	}
+
+.floorplantit {
+	float: left;
+	padding-left: 40px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 60px;
+	color: #FFF;
+	padding-top: 5px;
+	height: 69px;
+	}
+
+.thumbs {
+	float: left;
+	padding-left: 10px;
+	padding-top: 10px;
+	}
+	
+.thumbs li {
+	height: 65px;
+	width: 65px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 35px;
+	color: #ffffff;
+	padding-top: 13px;
+	cursor:pointer;
+	margin-right: 3px;
+	margin-left: 3px;
+}
+.thumbs li a {
+	color: #FFFFFF;
+	text-decoration: none;
+	display: block;
+	height: 65px;
+	width: 65px;
+}
+.thumbs li a:hover {
+	color: #000;
+	text-decoration: none;
+
+}
+.thumbsli01 {
+	background-image: url(../images/coclr01.png);
+	background-repeat: no-repeat;
+	float: left;
+	text-align: center;
+	vertical-align: middle;
+	height: 65px;
+	width: 65px;
+}
+.thumbsli02 {
+	background-image: url(../images/coclr02.png);
+	background-repeat: no-repeat;
+	float: left;
+	text-align: center;
+	vertical-align: middle;
+	height: 65px;
+	width: 65px;
+}
+.thumbsli03 {
+	background-image: url(../images/coclr03.png);
+	background-repeat: no-repeat;
+	float: left;
+	text-align: center;
+	vertical-align: middle;
+	height: 65px;
+	width: 65px;
+}
+.thumbsli04 {
+	background-image: url(../images/coclr04.png);
+	background-repeat: no-repeat;
+	float: left;
+	text-align: center;
+	vertical-align: middle;
+	height: 65px;
+	width: 65px;
+}
+.thumbsli05 {
+	background-image: url(../images/coclr05.png);
+	background-repeat: no-repeat;
+	float: left;
+	text-align: center;
+	vertical-align: middle;
+	height: 65px;
+	width: 65px;
+}

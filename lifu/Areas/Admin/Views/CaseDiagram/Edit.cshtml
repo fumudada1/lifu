@@ -1,0 +1,79 @@
+﻿@using lifu.Models
+@model lifu.Models.CaseDiagram
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>編輯</title>
+</head>
+<body>
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    
+    @{
+        if (ViewBag.close == "true")
+        {
+            <script>
+                $(document).ready(function () {
+                    parent.$.fn.colorbox.close();
+                    parent.location = '@Url.Action("Edit", "Cases", new { Id = Model.CaseId, type = "2" })';
+                });
+            </script>
+        }
+    }
+
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" })) {
+    
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+    
+        <fieldset>
+            <legend>CaseDiagram</legend>
+    
+            @Html.HiddenFor(model => model.Id)
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Subject)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Subject,new { placeholder=ModelsAttributeHelper<lifu.Models.CaseDiagram>.GetDisplayName("Subject") })
+               
+            </div>
+    
+            @Html.HiddenFor(x => x.CaseId)
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UpPicUrl)
+            </div>
+            <div class="editor-field">
+                <input type="file" name="UpPicUrls" />
+                @Html.HiddenFor(model => model.UpPicUrl)
+                @if (!string.IsNullOrEmpty(Model.UpPicUrl))
+                {
+                    <img src="~/upfiles/images/S@(Model.UpPicUrl)" />
+                }
+               
+            </div>
+    
+                @Html.HiddenFor(model => model.ListNum)
+           
+                @Html.HiddenFor(model => model.Counter)
+                @Html.HiddenFor(model => model.Poster)
+                @Html.HiddenFor(model => model.InitDate)
+                @Html.HiddenFor(model => model.UpdateDate)
+            <p>
+                <input type="submit" value="更新" />
+            </p>
+        </fieldset>
+    }
+    
+  
+</body>
+</html>

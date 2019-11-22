@@ -1,0 +1,132 @@
+﻿@using MvcPaging
+@model MvcPaging.IPagedList<lifu.Models.News>
+@{
+    ViewBag.Title = "最新消息";
+}
+
+<div id="content">
+
+    <!-------------------------Left Start------------------------->
+    <div id="left">
+        <img src="~/images/subject_02.jpg" alt="最新消息" width="165" height="103" />
+    </div>
+
+    <!-------------------------Left End------------------------->
+    <!-------------------------Right Start------------------------->
+    <div id="right">
+
+        <!-------------------------主要內容 Start------------------------->
+
+        <div class="pathlink">
+            首頁 > 最新消息
+        </div>
+
+        <div class="ban_photo">
+            <img src="~/images/newsban.jpg" width="771" height="125" />
+        </div>
+
+        <div class="newsbox">
+            <!-- 列表 Start -->
+            <ul class="newsbox_li">
+                @foreach (var item in Model)
+                {
+                     <li>
+                    <div class="newsbox_date">
+                        <p>@(Convert.ToDateTime(item.InitDate).Year).@(Convert.ToDateTime(item.InitDate).Month)</p>
+                        <span>@(Convert.ToDateTime(item.InitDate).Day)</span>
+                    </div>
+                    <div class="newsbox_list">
+                        <h3><a href="~/News/Show/@item.Id">@item.Subject</a></h3>
+                        <p>@UIUtility.LimitWord(item.ShortMemo,25) </p>
+                    </div>
+                </li>
+                }
+               
+               
+            </ul>
+            <!-- 列表 End -->
+
+            <div class="line01"></div>
+
+            <!--分頁開始-->
+            <div class="pages">
+
+                @*<div class="page_boxL">
+                    <ul class="page_box1">
+                        <li><div class="page_first"><a href="#">第一頁</a></div></li>
+                        <li><div class="page_back"><a href="#">上一頁</a></div></li>
+                    </ul>
+                    <ul class="page_box2">
+                        <li><a class="on" href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                    </ul>
+                    <ul class="page_box3">
+                        <li><div class="page_next"><a href="#">下一頁</a></div></li>
+                        <li><div class="page_end"><a href="#">最末頁</a></div></li>
+                    </ul>
+                </div>*@
+                <div class="pagination">
+                    @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+                </div>
+                <div class="page_boxR"> 資料筆數：@ViewBag.count  　</div>
+
+            </div>
+
+            <!--分頁結束-->
+
+        </div>
+
+
+
+
+        <!-------------------------主要內容 End------------------------->
+
+    </div>
+    <!-------------------------Right End------------------------->
+
+</div>
+<style>
+    div.pagination {
+        padding: 3px;
+        margin: 3px 3px 30px 3px;
+        text-align: center;
+        font-size: 15px;
+        color: #c1c1c1;
+    }
+
+        div.pagination a {
+            padding: 2px 5px 2px 5px;
+            margin: 2px;
+            border: 1px solid #c1c1c1;
+            text-decoration: none;
+            color: #c1c1c1;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+        }
+
+            div.pagination a:hover, div.pagination a:active {
+                border: 1px solid #c1c1c1;
+                color: #0092cb;
+            }
+
+        div.pagination span.current {
+            padding: 2px 5px 2px 5px;
+            margin: 2px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            border: 1px solid #c1c1c1;
+            color: #0092cb;
+        }
+
+        div.pagination.disabled {
+            padding: 2px 5px 2px 5px;
+            margin: 2px;
+            border: 1px solid #eee;
+            color: #ddd;
+        }
+</style>

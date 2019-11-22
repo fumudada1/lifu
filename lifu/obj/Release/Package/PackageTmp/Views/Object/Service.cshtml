@@ -1,0 +1,321 @@
+﻿@using lifu.Models
+@using SSB.Web.Mvc.Html
+@model lifu.Models.CaseServiceView
+@{
+    ViewBag.Title = "索取資料";
+    List<Cases> caseses = ViewBag.cases;
+}
+
+<div id="content">
+
+    <!-------------------------Left Start------------------------->
+    <div id="left">
+        <img src="~/images/subject_04.jpg" alt="新案推薦" width="162" height="103" />
+
+        <!-- 第1層 Start -->
+        <div class="lefmenu01">
+            <ul>
+                @foreach (var item in caseses)
+                {
+                    <li>
+                        @item.Subject
+                        <!-- 第2層 Start -->
+                        <ul>
+                            <li><a class="on" href="~/Object/Index/@item.Id">建案簡介</a></li>
+                            <li><a href="~/Object/Diagram/@item.Id">平面配置</a></li>
+                        </ul>
+                        <!-- 第2層 End -->
+                    </li>
+                }
+                <li class="green01">相關訊息
+                    <!-- 第2層 Start -->
+                    <ul>
+                        <li><a href="~/Object/Service">索取資料</a></li>
+                    </ul>
+                    <!-- 第2層 End -->
+                </li>
+
+            </ul>
+        </div>
+        <!-- 第1層 End -->
+
+    </div>
+
+    <!-------------------------Left End------------------------->
+    <!-------------------------Right Start------------------------->
+    <div id="right">
+
+        <!-------------------------主要內容 Start------------------------->
+        <div class="pathlink">
+            首頁 > 新案推薦 > 相關訊息
+        </div>
+
+        <div class="ban_tite">
+            <p>相關訊息 / <span>索取資料</span></p>
+        </div>
+
+        <!--選擇建案 Start-->
+        <div class="selectbox">
+
+            <div class="ban_step1">選擇建案</div>
+            @using (Html.BeginForm())
+            {
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                @ViewBag.Message
+                <div class="selectbox1">
+                    <ul>
+                        @foreach (var item in caseses)
+                        {
+                            <li>
+                                <div class="selectbox1_pho">
+                                    <h3>@item.Subject</h3>
+                                    @if (!string.IsNullOrEmpty(item.ServerImageUrl))
+                                    {
+                                        <img src="~/upfiles/images/S@(item.ServerImageUrl)" width="167" height="115" />
+                                    }
+
+                                </div>
+                                <p>
+                                    <input type="checkbox" class="chkData" /><input type="hidden" value="@item.Subject"/>
+                                    索取資料
+                                </p>
+                                <p>
+                                    <input type="checkbox" class="chkReserved" /><input type="hidden" value="@item.Subject"/>
+                                    預約看屋
+                                </p>
+                            </li>
+                        }
+
+
+                    </ul>
+                </div>
+                <!--選擇建案 End-->
+                <!--索取資料 Start-->
+                <div class="ban_step2">
+                    請留下您的聯絡資料
+                    <span>* 號為必填項</span>
+
+                </div>
+
+                <div class="selectbox2">
+                    <div class="selectbox2_tit">索取資料 ( 已勾選 )</div>
+                    <div class="selectbox2_con">
+                        <ul id="ulData">
+                           -
+                        </ul>
+                        <input type="hidden" id="Data" name="Data" />
+                    </div>
+                    <div class="selectbox2_tit line">預約看屋 ( 已勾選 )</div>
+                    <div class="selectbox2_con">
+                        <ul id="ulReserved">
+                        </ul>
+                        <input type="hidden" id="Reserved" name="Reserved" />
+                    </div>
+
+                </div>
+                <!--索取資料 End-->
+                <!-- 表單 Start -->
+                <div class="selectbox3">
+                    <div class="formtable float2">
+                        <table>
+                            <tr>
+                                <th><span class="red">*</span> 姓名：</th>
+                                <td>
+                                    @Html.TextBoxFor(model => model.Name, new { @class = "i_input01", placeholder = ModelsAttributeHelper<lifu.Models.CaseService>.GetDisplayName("Name") })
+                                    @Html.ValidationMessageFor(model => model.Name)
+                                    &nbsp;&nbsp;@Html.DropDownListFor(model => model.Gender, new SelectList(Enum.GetValues(typeof(GenderType))))
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><span class="red">*</span> 生日</th>
+                                <td>
+                                    @Html.TextBoxFor(model => model.Birthday, "{0:d}", new { @class = "datepicker", target = "", placeholder = ModelsAttributeHelper<lifu.Models.CaseService>.GetDisplayName("Birthday") })
+                                    @Html.ValidationMessageFor(model => model.Birthday)
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>電話：</th>
+                                <td>
+                                    @Html.TextBoxFor(model => model.AreaCode, new { @class = "i_input04", placeholder = ModelsAttributeHelper<lifu.Models.CaseService>.GetDisplayName("AreaCode") })
+                                    -
+                                    @Html.TextBoxFor(model => model.Telphone, new { @class = "i_input05", placeholder = ModelsAttributeHelper<lifu.Models.CaseService>.GetDisplayName("Telphone") })
+                                    @Html.ValidationMessageFor(model => model.Telphone)
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><span class="red">*</span> 手機：</th>
+                                <td>
+                                    @Html.TextBoxFor(model => model.Mobile, new { placeholder = ModelsAttributeHelper<lifu.Models.CaseService>.GetDisplayName("Mobile") })
+                                    @Html.ValidationMessageFor(model => model.Mobile)
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><span class="red">*</span> 電子信箱：</th>
+                                <td>
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "i_input02", placeholder = ModelsAttributeHelper<lifu.Models.CaseService>.GetDisplayName("Email") })
+                                    @Html.ValidationMessageFor(model => model.Email)
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><span class="red">*</span> 聯絡地址：</th>
+                                <td>
+                                    <span class="zipcode" style="width: auto; padding-left: 0; padding-right: 5px; padding-top: 2px; font-size: 100%"></span>
+                                    @Html.TextBoxFor(model => model.Address, new { placeholder = ModelsAttributeHelper<lifu.Models.CaseService>.GetDisplayName("Address") })
+                                    <span id="hidzip">
+                                        <input type="hidden" value="800" />
+
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><span class="red">*</span> 如何得知此網站：</th>
+                                <td>
+                                    <input type="checkbox" name="Information" value="網路" />
+                                    網路 &nbsp;&nbsp;
+                                    <input type="checkbox" name="Information" value="簡訊" />
+                                    簡訊 &nbsp;&nbsp;
+                                    <input type="checkbox" name="Information" value="報紙" />
+                                    報紙 &nbsp;&nbsp;
+                                    <input type="checkbox" name="Information" value="廣播" />
+                                    廣播 &nbsp;&nbsp;
+                                    <input type="checkbox" name="Information" value="雜誌" />
+                                    雜誌 &nbsp;&nbsp;
+                                    <input type="checkbox" name="Information" value="活動" />
+                                    活動 &nbsp;&nbsp;
+                                    <input type="checkbox" name="Information" value="介紹" />
+                                    介紹
+                                    @Html.ValidationMessageFor(model => model.Information)
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>購屋需求：</th>
+                                <td>
+                                    @Html.DropDownList("CostId", "請選擇預算")
+
+                                    @Html.DropDownList("AreaId", "請選擇坪數")
+
+                                    @Html.DropDownList("TypeId", "請選擇格局")
+                                    @Html.ValidationMessageFor(model => model.CostId)
+                                    @Html.ValidationMessageFor(model => model.AreaId)
+                                    @Html.ValidationMessageFor(model => model.TypeId)
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><span class="red">*</span>  願意獲得更多資訊：</th>
+                                <td>
+                                    @Html.DropDownListFor(model => model.MoerInformation, new SelectList(Enum.GetValues(typeof(lifu.Models.MoreInformation))))
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><span class="red">*</span> 驗證碼：</th>
+                                <td>
+                                    @Html.MvcCaptcha()
+                                    @Html.TextBoxFor(model => model.MvcCaptcha)
+                                    @Html.ValidationMessageFor(model => model.MvcCaptcha)
+                                    驗證碼有大小寫之分
+                                </td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    @Html.CheckBoxFor(model => model.IsRead) 我已閱讀並同意本站 <a href="#">個資服務條款</a>
+                                    @Html.ValidationMessageFor(model => model.IsRead)
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="line"></th>
+                                <td class="line">
+                                    <input class="button01" type="submit" name="button2" value="確定送出" />
+                                    <input class="button01" type="reset" name="button2" value="取消重填" /></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <!-- 表單 End -->
+                <!--聯絡資料 End-->
+            }
+        </div>
+
+        <!-------------------------主要內容 End------------------------->
+
+    </div>
+    <!-------------------------Right End------------------------->
+
+</div>
+@section Scripts {
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/js/twzipcode-1.3.1.js"></script>
+    <script src="~/js/twzipcode-1.3.1.1.js"></script>
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+    <script>
+        $(document).ready(function () {
+            $(".datepicker").datepicker({ defaultDate: "-10y" });
+            $('.zipcode').twzipcode({
+                zipSel: $('#hidzip').children().val(),
+                zipReadonly: false
+            });
+            $(".chkData").click(function () {
+                var data = "";
+                var dataItem = "";
+                $(".chkData").each(function () {
+                    if ($(this).attr("checked") == "checked") {
+                        data += $(this).next().val() + ",";
+                        dataItem += "<li><a href='#'>" + $(this).next().val() + "</a></li>";
+                    }
+                });
+                $("#Data").val(data);
+                $("#ulData").children().remove();
+                $("#ulData").append(dataItem);
+            });
+
+            $(".chkReserved").click(function () {
+                var reserved = "";
+                var reservedItem = "";
+                $(".chkReserved").each(function () {
+                    if ($(this).attr("checked") == "checked") {
+                        reserved += $(this).next().val() + ",";
+                        reservedItem += "<li><a href='#'>" + $(this).next().val() + "</a></li>";
+                    }
+                });
+                $("#Reserved").val(reserved);
+                $("#ulReserved").children().remove();
+                $("#ulReserved").append(reservedItem);
+            });
+        });
+    </script>
+    <style>
+        /* styles for validation helpers */
+        .field-validation-error {
+            color: #e80c4d;
+            font-weight: bold;
+        }
+
+        .field-validation-valid {
+            display: none;
+        }
+
+        input.input-validation-error {
+            border: 1px solid #e80c4d;
+        }
+
+        input[type="checkbox"].input-validation-error {
+            border: 0 none;
+        }
+
+        .validation-summary-errors {
+            color: #e80c4d;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .validation-summary-valid {
+            display: none;
+        }
+    </style>
+}

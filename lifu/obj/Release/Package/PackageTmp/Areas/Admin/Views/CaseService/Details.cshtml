@@ -1,0 +1,111 @@
+﻿@model lifu.Models.CaseService
+
+@{
+    ViewBag.Title = "索取資料內容";
+}
+
+<h2>索取資料內容</h2>
+
+<fieldset>
+    <legend>CaseService</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Data)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Data)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Reserved)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Reserved)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Cost.Subject)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cost.Subject)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Area.Subject)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Area.Subject)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Type.Subject)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Type.Subject)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Birthday)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Birthday)
+    </div>
+
+   
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Telphone)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AreaCode)- @Html.DisplayFor(model => model.Telphone)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Mobile)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Mobile)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+  
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Address)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Zip) @Html.DisplayFor(model => model.City)  @Html.DisplayFor(model => model.Division) @Html.DisplayFor(model => model.Address)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Information)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Information)
+    </div>
+     <div class="display-label">
+         @Html.DisplayNameFor(model => model.InitDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.InitDate)
+    </div>
+
+</fieldset>
+
+<p>
+    
+    @Html.ActionLink("回列表", "Index")
+</p>

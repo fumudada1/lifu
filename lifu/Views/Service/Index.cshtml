@@ -1,0 +1,173 @@
+﻿@using lifu.Models
+@using SSB.Web.Mvc.Html
+@model lifu.Models.ServiceView
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="content">
+
+    <!-------------------------Left Start------------------------->
+    <div id="left">
+        <img src="~/images/subject_05.jpg" alt="客戶服務" width="165" height="103"/>
+    </div>
+
+    <!-------------------------Left End------------------------->
+    <!-------------------------Right Start------------------------->
+    <div id="right">
+
+        <!-------------------------主要內容 Start------------------------->
+
+        <div class="pathlink">
+            首頁 > 客戶服務
+        </div>
+
+        <div class="ban_photo">
+            <img src="~/images/serviceban.jpg" width="771" height="125"/>
+        </div>
+
+        <div class="ban_tite01 margtop01">
+            <p>
+                無論您是否購買本公司的房子，或是您想獲得本公司最新的推案資訊，都歡迎您透過這個信箱，
+                <br/>
+                與我們連絡，您的意見將是我們進步的動力。
+            </p>
+        </div>
+
+        <!-- 表單 Start -->
+        @using (Html.BeginForm())
+        {
+
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            @ViewBag.Message
+            <div class="formtable float1">
+                <table>
+                    <tr>
+                        <th><span class="red">*</span> 姓名：</th>
+                        <td>
+                            @Html.TextBoxFor(model => model.Name, new {@class = "i_input01", placeholder = ModelsAttributeHelper<lifu.Models.ServiceView>.GetDisplayName("Name")})
+                            @Html.ValidationMessageFor(model => model.Name)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>電話：</th>
+                        <td>
+                            @Html.TextBoxFor(model => model.AreaCodeAM, new {@class = "i_input04", placeholder = ModelsAttributeHelper<lifu.Models.ServiceView>.GetDisplayName("AreaCodeAM")})
+                            -
+                            @Html.TextBoxFor(model => model.TelphoneAM, new {@class = "i_input05", placeholder = ModelsAttributeHelper<lifu.Models.ServiceView>.GetDisplayName("TelphoneAM")})
+                            @Html.ValidationMessageFor(model => model.TelphoneAM) (日)<br>
+                            @Html.TextBoxFor(model => model.AreaCodePM, new {@class = "i_input04", placeholder = ModelsAttributeHelper<lifu.Models.ServiceView>.GetDisplayName("AreaCodePM")})
+                            -
+                            @Html.TextBoxFor(model => model.TelphonePM, new {@class = "i_input05", placeholder = ModelsAttributeHelper<lifu.Models.ServiceView>.GetDisplayName("TelphonePM")})
+                            @Html.ValidationMessageFor(model => model.TelphonePM) (夜)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><span class="red">*</span> 手機：</th>
+                        <td> @Html.TextBoxFor(model => model.Mobile, new {placeholder = ModelsAttributeHelper<lifu.Models.ServiceView>.GetDisplayName("Mobile")})
+                            @Html.ValidationMessageFor(model => model.Mobile)</td>
+                    </tr>
+                    <tr>
+                        <th><span class="red">*</span> 電子信箱：</th>
+                        <td> @Html.TextBoxFor(model => model.Email, new {@class = "i_input02", placeholder = ModelsAttributeHelper<lifu.Models.ServiceView>.GetDisplayName("Email")})
+                            @Html.ValidationMessageFor(model => model.Email)</td>
+                    </tr>
+                    <tr>
+                        <th><span class="red">*</span> 已購戶：</th>
+                        <td>
+                            <input type="radio" name="User" value="是" checked="checked"/>是
+                            @Html.DropDownList("CaseId")
+                            &nbsp;&nbsp;
+                            <input type="radio" name="User" value="否"/>否
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><span class="red">* </span>您的意見： </th>
+                        <td>
+                            @Html.TextAreaFor(model => model.ShortMemo, new {@style = "height: 150px", @class = "i_input06", placeholder = ModelsAttributeHelper<lifu.Models.ServiceView>.GetDisplayName("ShortMemo")})
+                            @Html.ValidationMessageFor(model => model.ShortMemo)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><span class="red">*</span> 驗證碼：</th>
+                        <td>
+                            @Html.MvcCaptcha()
+                            @Html.TextBoxFor(model => model.MvcCaptcha)
+                            @Html.ValidationMessageFor(model => model.MvcCaptcha)
+                            驗證碼有大小寫之分
+                        </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>
+                            @Html.CheckBoxFor(model => model.IsRead) 我已閱讀並同意本站 <a href="#">個資服務條款</a>
+                            @Html.ValidationMessageFor(model => model.IsRead)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="line"></th>
+                        <td class="line"> <input class="button01" type="submit" name="button2" value="確定送出"/>
+                            <input class="button01" type="reset" name="button2" value="取消重填"/></td>
+                    </tr>
+                </table>
+            </div>
+        }
+        <!-- 表單 End -->
+        <!-------------------------主要內容 End------------------------->
+
+    </div>
+    <!-------------------------Right End------------------------->
+
+</div>
+
+@{
+    if (ViewBag.state == "success")
+    {
+        <script>
+            alert("感謝您的來函，我們將盡快與您聯絡！");
+            window.location.href = "/";
+        </script>
+    }
+}
+@section Scripts {
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/js/twzipcode-1.3.1.js"></script>
+    <script src="~/js/twzipcode-1.3.1.1.js"></script>
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+   
+    <style>
+        /* styles for validation helpers */
+        .field-validation-error {
+            color: #e80c4d;
+            font-weight: bold;
+        }
+
+        .field-validation-valid {
+            display: none;
+        }
+
+        input.input-validation-error {
+            border: 1px solid #e80c4d;
+        }
+
+        input[type="checkbox"].input-validation-error {
+            border: 0 none;
+        }
+
+        .validation-summary-errors {
+            color: #e80c4d;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .validation-summary-valid {
+            display: none;
+        }
+    </style>
+}
+

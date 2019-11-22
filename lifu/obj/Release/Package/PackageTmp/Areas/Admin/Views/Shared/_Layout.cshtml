@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <title>@ViewBag.Title-管理系統</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css?20130815" />
+      <link rel="stylesheet" href="~/Content/fonts/font-awesome/css/font-awesome.min.css" />
+    <link href="~/Scripts/jquery.pageslide/jquery.pageslide.css" rel="stylesheet" />   
+    <link href="~/Content/style.css?20130815" rel="stylesheet" />
+    <link href="~/Content/style-edit.css?20130815" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script>window.html5 || document.write('<script src="media/js/libs/fixes/html5.js"><\/script>')</script>
+  <![endif]-->
+</head>
+<body id="gowater" class="sidebar-max gowater">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a class="brand" href="dashboard.html"><i class="icon-home icon-white"></i> Control Panel</a>
+            <ul class="nav user_menu pull-right">
+                
+                
+                <li>
+     @* <a href="theme-docs.html">
+      </a>*@
+  </li>
+  <li class="pull-right pull-right-a">
+          @Html.Partial("_LoginPartial")
+         
+  </li>
+                
+            </ul>
+<a data-target=".nav-collapse" data-toggle="collapse" class="btn_menu">
+<span class="icon-align-justify icon-white"></span>
+</a>
+            <nav>
+                <div class="nav-collapse">
+                   
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+<ul id="topbar" class="on-click">
+  <li class="pull-left">
+    <h1 id="topbar-title">
+      <i class="icon-cogs"></i>
+      <a href="index-2.html"></a>
+    </h1>
+  </li>
+  
+</ul>
+
+<div class="container-fluid" id="container">
+  <div id="sidebar">
+      <ul class="sidebar-menu on-click" id="main-menu">
+          @{
+              var menu = @ViewBag.menu;
+          }
+          @Html.Raw(@menu) 
+      </ul>
+    <a href="#" id="sidebar-resizer"> <i class="min icon-resize-small"></i> <i class="max icon-resize-full"></i> </a></div>
+  <div id="content">
+    <div class="page" id="page-dashboard">
+       @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
+    </div>  
+  </div>
+
+</div>
+<script src="~/Scripts/jquery-1.9.1.js"></script>
+  <script src="~/Scripts/modernizr-2.5.3.js"></script>
+<script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+
+ <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+
+
+
+  <script src="~/Scripts/bootstrap.min.js"></script>
+  <script src="~/Scripts/madmin.js"></script>
+  <script src="~/Scripts/application.js"></script>
+<script src="~/Scripts/gebo_common.js"></script>
+
+<script src="~/Scripts/jquery-ui-1.10.0.js"></script>
+<script src="~/Scripts/ui.datepicker-zh-TW.js"></script>
+
+<link href="~/Content/themes/base/jquery.ui.core.css" rel="stylesheet"/>
+<link href="~/Content/themes/base/jquery.ui.datepicker.css" rel="stylesheet"/>
+<link href="~/Content/themes/base/jquery.ui.theme.css" rel="stylesheet"/>
+
+    <script>
+        $(document).ready(function () {
+            //若為必填，則自動加*
+            $("[data-val='true']").parent().prev().children().prepend("<spna style='color:red'>*</span>");
+            $("[placeholder]").each(function () {
+                $(this).attr('placeholder', "請輸入" + $(this).attr('placeholder'));
+                
+            });
+          $('a:contains("回列表")').addClass("btn");
+          $('a:contains("回列表")').parent().addClass("bottom-btn");
+        });
+    </script>
+
+  @*需要把Scripts拉到Head 裡來 *@
+  @RenderSection("scripts", required: false)
+</body>
+</html>

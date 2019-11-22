@@ -1,0 +1,86 @@
+﻿@model lifu.Models.CaseDiagram
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>內容</title>
+</head>
+<body>
+    <fieldset>
+        <legend>CaseDiagram</legend>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Subject)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Subject)
+        </div>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Case.Subject)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Case.Subject)
+        </div>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.UpPicUrl)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.UpPicUrl)
+        </div>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.ListNum)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.ListNum)
+        </div>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Counter)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Counter)
+        </div>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Poster)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Poster)
+        </div>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.InitDate)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.InitDate)
+        </div>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Updater)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Updater)
+        </div>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.UpdateDate)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.UpdateDate)
+        </div>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Edit", "編輯", new { id=Model.Id }) |
+        @Html.ActionLink("回列表", "Index")
+    </p>
+</body>
+</html>

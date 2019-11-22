@@ -1,0 +1,116 @@
+﻿@using MvcPaging
+@model MvcPaging.IPagedList<lifu.Models.CaseServiceArea>
+
+@{
+    ViewBag.Title = "坪數設定";
+}
+
+<h2>坪數設定</h2>
+
+<p>
+    @Html.ActionLink("新增", "Create")
+</p>
+
+    @using (Html.BeginForm())
+{
+<div>
+        </div>
+    
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Subject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().ListNum)
+        </th>
+         <th>
+            新排序
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Poster)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().InitDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Updater)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().UpdateDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Subject)
+        </td>
+        <td>
+                 @Html.DisplayFor(modelItem => item.ListNum)
+        </td>
+        <td>
+                @Html.TextBoxFor(modelItem => item.ListNum,new {@class="position"})
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Poster)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InitDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Updater)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdateDate)
+        </td>
+        <td>
+            @Html.ActionLink("編輯", "Edit", new { id=item.Id }) |
+            @*@Html.ActionLink("內容", "Details", new { id=item.Id }) | *@
+            @Html.ActionLink("刪除", "Delete", new { id=item.Id })
+            @Html.Hidden("ID",item.Id)
+        </td>
+    </tr>
+}
+
+</table>
+
+@using (Html.BeginForm("Sort",null))
+    {
+        <div>
+            <input type="hidden" id="sortData" name="sortData"/>
+            <input type="submit" value="更新排序" />
+        </div>
+    }
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="@Url.Content("~/Scripts/jquery.tablednd.0.5.js")" type="text/javascript"></script>
+   
+    <script>
+        $(document).ready(function() {
+            $("table").tableDnD({
+                onDragClass: "showDragHandle",
+                onDrop: function(table, row) {
+                    var rows = table.tBodies[0].rows;
+                    var map = "";
+                    for (var i = 1; i < rows.length; i++) {
+                        $(rows[i]).find(".position").val(i);
+                        map += $(rows[i]).find("#ID").val() + ":" + i + ",";
+                    }
+                    $("#sortData").val(map);
+                }
+            });
+        });
+    </script>
+    <style>
+        .position {
+            width: 27px;
+        }
+    </style>
+}
+

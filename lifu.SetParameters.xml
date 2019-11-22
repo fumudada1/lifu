@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="lifu" />
+  <setParameter name="DefaultConnection-Web.config Connection String" value="Data Source=.;Initial Catalog=lifu;Persist Security Info=True;User ID=sa;Password=!QAZ2wsx" />
+  <setParameter name="DefaultConnection1-Web.config Connection String" value="Data Source=.\sql2008;Initial Catalog=lifu;Persist Security Info=True;User ID=sa;Password=!QAZ2wsx" />
+</parameters>

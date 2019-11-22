@@ -1,0 +1,74 @@
+﻿@using lifu.Models
+@model lifu.Models.News
+
+@{
+    ViewBag.Title = "最新消息編輯";
+}
+
+<h2>最新消息編輯</h2>
+
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" })) {
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>News</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Subject)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Subject,new { placeholder=ModelsAttributeHelper<lifu.Models.News>.GetDisplayName("Subject") })
+           
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UpImageUrl)
+        </div>
+        <div class="editor-field">
+            <input type="file" name="UpImageUrls" />
+            @Html.HiddenFor(model => model.UpImageUrl)
+            @if (!string.IsNullOrEmpty(Model.UpImageUrl))
+            {
+                <img src="~/upfiles/images/S@(Model.UpImageUrl)" />
+            }
+           
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ShortMemo)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.ShortMemo,new { @style = "height: 150px",placeholder=ModelsAttributeHelper<lifu.Models.News>.GetDisplayName("ShortMemo") })
+            @Html.ValidationMessageFor(model => model.ShortMemo)
+           
+        </div>
+
+            @Html.HiddenFor(model => model.Poster)
+            @Html.HiddenFor(model => model.InitDate)
+            @Html.HiddenFor(model => model.UpdateDate)
+        <p>
+            <input type="submit" value="更新" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("回列表", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+    <script>
+        $(document).ready(function() {
+            $(".datepicker").datepicker();
+        });
+    </script>
+
+    }

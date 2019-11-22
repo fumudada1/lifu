@@ -1,0 +1,74 @@
+﻿@{
+    Layout = null;
+}
+
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>利富建設股份有限公司</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
+    </script>
+    <!--<script type="text/javascript" src="/js/common.js"></script>-->
+    <script type="text/javascript" src="~/js/jquery.simplyscroll.js"></script>
+    <link rel="stylesheet" href="~/css/jquery.simplyscroll.css" media="all" type="text/css">
+    <link href="~/css/reset.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/css/style.css" media="all" type="text/css">
+    <script type="text/javascript">
+        (function ($) {
+            $(function () {
+                $("#scroller").simplyScroll({
+                    autoMode: 'loop'
+                });
+
+
+                $("#scroller1").simplyScroll({
+                    autoMode: 'loop',
+                    frameRate: '48',
+
+
+                });
+
+
+                $("#scroller2").simplyScroll({
+                    autoMode: 'loop'
+                });
+
+            });
+        })(jQuery);
+    </script>
+</head>
+
+<body>
+    <!--<div class="all">-->
+    <div id="index_bg_up">
+
+        <div id="contain">
+
+           @Html.Partial("_Menu")
+
+        </div>
+    </div>
+
+
+    <div class="buld">
+        <ul id="scroller1">
+            <li><img src="~/images/banner01.jpg"></li>
+        </ul>
+    </div>
+
+    <div id="index_bg_down">
+
+        <div id="contain">
+
+            @Html.Partial("_Footer")
+
+        </div>
+    </div>
+
+
+
+
+
+</body>
+</html>

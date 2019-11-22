@@ -1,0 +1,16 @@
+.prettyLoader {
+	height: 30px;
+	position: absolute;
+	width: 30px;
+	z-index: 30000;
+	background-image: url(../images/console_dark/prettyLoader.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+
+.prettyLoader img {
+	display: block;
+	margin: 7px 0 0 7px;
+}
+
+.pl_ie6 { background-image: url(../images/console_dark/prettyLoader.gif); }

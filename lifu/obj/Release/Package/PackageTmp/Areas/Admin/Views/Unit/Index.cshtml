@@ -1,0 +1,69 @@
+﻿@using MvcPaging
+@model MvcPaging.IPagedList<lifu.Models.Unit>
+
+@{
+    ViewBag.Title = "單位維護";
+}
+
+<h2>單位維護</h2>
+<img src="~/Images/bullet.png"/>
+<p>
+    @Html.ActionLink("新增單位", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @* model.Subject 需要改成 model.FirstOrDefault()，因為換成IPagedList 了  *@
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Subject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Alias)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().ListNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Poster)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Updater)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().InitDate)
+        </th>
+        <th>功能</th>
+    </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Alias)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ListNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Poster)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Updater)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InitDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+<div class="pager">
+    @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+</div>
+

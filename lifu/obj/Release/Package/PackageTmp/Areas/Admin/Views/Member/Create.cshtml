@@ -1,0 +1,122 @@
+﻿@using System.Collections
+
+@using lifu.Models
+@model lifu.Models.Member
+
+@{
+    ViewBag.Title = "新增帳號";
+}
+
+<h2>新增帳號</h2>
+
+@using (Html.BeginForm("Create", "Member", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>會員帳號資料</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Account)
+        </div>
+        <div class="editor-field">
+             @Html.EditorFor(model => model.Account)<input id="btnCheck" type="button" value="檢查帳號" />
+            @Html.ValidationMessageFor(model => model.Account) <span>@ViewBag.Message</span>
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+             @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+             @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Gender)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Gender, new SelectList(Enum.GetValues(typeof(GenderType))))
+            @Html.ValidationMessageFor(model => model.Gender)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+             @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MyPic)
+        </div>
+        <div class="editor-field">
+            <input type="file" name="upfile" />
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.JobTitle)
+        </div>
+        <div class="editor-field">
+             @Html.EditorFor(model => model.JobTitle)
+            @Html.ValidationMessageFor(model => model.JobTitle)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MyUnit)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.UnitId, new SelectList(ViewBag.Units as IEnumerable, "Id", "Subject"))
+            @Html.ValidationMessageFor(model => model.UnitId)
+        </div>
+        <div class="editor-field">
+            @Html.LabelFor(model => model.Permission)
+            <div id="tree3"></div>
+            @Html.HiddenFor(model => model.Permission)
+        </div>
+
+       
+        
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery-ui.custom.js" type="text/javascript"></script>
+
+
+    <link href="~/Content/themes/base/skin/ui.dynatree.css" rel="stylesheet" type="text/css" id="skinSheet">
+    <script src="~/Scripts/jquery.dynatree.js" type="text/javascript"></script>
+    <script src="~/Member/TreeScript/0" type="text/javascript"></script>
+     <script>
+         $(document).ready(function () {
+             $("#btnCheck").click(function () {
+                 if ($("#Account").val() == "") {
+                     alert("帳號不可空白");
+                     return;
+                 }
+                 $.get("CheckAccount", { userName: $("#Account").val() }).done(function (data) {
+
+                     alert(data);
+
+                 }).fail(function () { alert("連線錯誤!"); });
+             });
+         });
+    </script>
+}

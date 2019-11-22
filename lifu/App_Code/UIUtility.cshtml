@@ -1,0 +1,164 @@
+﻿@using lifu.Models
+@functions
+                {
+    /// <summary>
+    /// 轉換連結開啟的值
+    /// </summary>
+    /// <param name="targetType"></param>
+    /// <returns></returns>
+    public static string ConvertLinkTarget(TargetType targetType)
+    {
+        string target = "";
+        if (targetType == TargetType.另開視窗)
+        {
+            target = "_blank";
+        }
+        return target;
+    }
+
+    #region 輸入文字方塊的文字轉成HTML
+    /// <summary>
+    /// 輸入文字方塊的文字轉成HTML
+    /// </summary>
+    /// <param name="article">要轉換的文字</param>
+    /// <returns>回傳HTML用的文字</returns>
+    /// <remarks></remarks>
+
+    static public string Txt2Html(object article)
+    {
+        if (article != null)
+        {
+            string fstr = (string)article;
+             fstr = fstr.Replace(">", "&gt;");
+        fstr = fstr.Replace(">", "&gt;");
+        fstr = fstr.Replace("<", "&lt;");
+        fstr = fstr.Replace("\"", "&quot;");
+        fstr = fstr.Replace("\'", "&quot;");
+        fstr = fstr.Replace("\n", "<br>");
+        fstr = fstr.Replace("|", "&brvbar;");
+        fstr = fstr.Replace(" ", "&nbsp;");
+        fstr = fstr.Replace("[", "<");
+        fstr = fstr.Replace("]", ">");
+        fstr = fstr.Replace("url=", "a href=");
+        fstr = fstr.Replace("/url", "/a");
+        return fstr;
+        }
+        return "";
+    }
+
+
+
+    #endregion
+
+    #region 限制字數的函式，適用於抓取資料庫資料，繫節時使用，會把NULL值換成空白顯示。
+    /// <summary>
+    /// 限制字數的函式，適用於抓取資料庫資料，繫節時使用，會把NULL值換成空白顯示。
+    /// </summary>
+    /// <param name="longString">要被限制的字串</param>
+    /// <param name="intLimitCount">要限制幾個字</param>
+    /// <returns>回傳字串結果</returns>
+    /// <remarks>繫節時使用，會把NULL值換成空白顯示。</remarks>
+    static public string LimitWord(object longString, int intLimitCount)
+    {
+        if (longString != null)
+        {
+            string strLongWord = (string)longString;
+            if (strLongWord.Length > intLimitCount)
+            {
+                return ((string)(longString)).Substring(0, intLimitCount) + "...";
+            }
+            return strLongWord;
+        }
+        return "";
+    }
+
+    #endregion
+
+    #region "把該日期轉成民國年.月.日格式"
+    /// <summary>
+    /// 把該日期轉成民國年.月.日格式
+    /// </summary>
+    /// <param name="dat">要轉換的日期</param>
+    /// <returns>回傳民國年.月.日格式</returns>
+    static public string Date2RocFormat(DateTime dat)
+    {
+        return (dat.Year - 1911).ToString("000") + "." + dat.Month.ToString("00") + "." + dat.Day.ToString("00");
+    }
+    #endregion
+
+    #region "把該日期轉成民國XX年XX月XX日格式"
+    /// <summary>
+    /// 把該日期轉成民國XX年XX月XX日格式
+    /// </summary>
+    /// <param name="dat">要轉換的日期</param>
+    /// <returns>回傳民國XX年XX月XX日格式</returns>
+    /// <remarks></remarks>
+    static public string Date2CrocFormat(DateTime dat)
+    {
+        return "民國" + (dat.Year - 1911).ToString() + "年" + dat.Month.ToString() + "月" + dat.Day.ToString() + "日";
+    }
+    #endregion
+
+    #region "把該日期轉成民國XX年XX月XX日 星期X 格式"
+    /// <summary>
+    /// 把該日期轉成民國XX年XX月XX日 星期X 格式
+    /// </summary>
+    /// <param name="dat">要轉換的日期</param>
+    /// <returns>回傳民國XX年XX月XX日 星期X</returns>
+    /// <remarks></remarks>
+    static public string Date2CrocWeekFormat(DateTime dat)
+    {
+        string week = "";
+        switch (dat.DayOfWeek)
+        {
+            case DayOfWeek.Sunday:
+                week = "日";
+                break;
+            case DayOfWeek.Monday:
+                week = "一";
+                break;
+            case DayOfWeek.Tuesday:
+                week = "二";
+                break;
+            case DayOfWeek.Wednesday:
+                week = "三";
+                break;
+            case DayOfWeek.Thursday:
+                week = "四";
+                break;
+            case DayOfWeek.Friday:
+                week = "五";
+                break;
+            case DayOfWeek.Saturday:
+                week = "六";
+                break;
+        }
+        return String.Format("民國{0}年{1}月{2}日 星期{3}", dat.Year - 1911, dat.Month, dat.Day, week);
+    }
+    #endregion
+
+    #region "內連結轉換"
+
+    /// <summary>
+    /// 內連結轉換
+    /// </summary>
+    /// <param name="link">使用連結</param>
+    /// <param name="insidePath">要附加的路徑(例:~/UploadFiles/Files/) </param>
+    /// <param name="useServerMap"></param>
+    /// <returns></returns>
+    public static string ConverInsideLink(object link, string insidePath, bool useServerMap)
+    {
+        if (link.ToString().ToLower().IndexOf("http://", StringComparison.Ordinal) == -1)
+        {
+            if (useServerMap)
+            {
+                return HttpContext.Current.Server.MapPath(insidePath) + link;
+            }
+            return insidePath + link;
+        }
+        return link.ToString();
+    }
+
+        #endregion
+
+                }

@@ -1,0 +1,104 @@
+
+    .navbar-inner {
+        background: #3993ba;
+        background: -moz-linear-gradient(top, #3993ba 0%, #067ead 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3993ba), color-stop(100%,#067ead));
+        background: -webkit-linear-gradient(top, #3993ba 0%,#067ead 100%);
+        background: -o-linear-gradient(top, #3993ba 0%,#067ead 100%);
+        background: -ms-linear-gradient(top, #3993ba 0%,#067ead 100%);
+        background: linear-gradient(top, #3993ba 0%,#067ead 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3993ba', endColorstr='#067ead',GradientType=0 );
+    }
+    .navbar .nav > li > a {
+        color: #c1dce7;
+    }
+    .navbar .nav > li:hover > a {
+        color:#fff;
+    }
+    .navbar .nav .active > a, .navbar .nav .active > a:hover {
+        background: #206484;
+    }
+    .navbar .divider-vertical {
+        background-color:#2078A1;
+        border-color:#3497C2;
+    }
+    .dropdown-menu li > a:hover, .dropdown-menu .active > a,
+	.dropdown-menu .active > a:hover,
+    .nav-list > .active > a, .nav-list > .active > a:hover {
+        background: #48a6d2 !important;
+    }
+	
+	.table thead th {background-color:#ebf2f6 !important}
+	.dataTables_wrapper th.sorting_asc,.dataTables_wrapper th.sorting_desc {background-color:#d4e3eb !important}
+/* header */
+        .navbar .brand {width: 200px;padding-bottom:0;padding-top:0;font: 100 18px/40px 'PT Sans', sans-serif;text-decoration:none;color: #fff}
+        .navbar .brand i {margin-top:5px}
+        .navbar .caret {opacity: .6;filter: alpha(opacity=60)}
+        .navbar .user_menu {margin-left: 0}
+        .navbar .user_menu .nb_boxes {margin:9px 0 0}
+        .navbar .user_menu .nb_boxes .label {background: transparent;background:rgba(0,0,0,.2);padding:3px 4px}
+        .navbar .user_menu .nb_boxes a {cursor:pointer;float:left;margin-right:8px}
+        .navbar .user_menu .nb_boxes a:last-child {margin:0}
+        .btn_menu {display:none}
+#gowater .pull-right-a  > a {display:inline }
+#gowater .pull-right-a{color: #fff;padding: 9px 0 0 0}
+#gowater .pull-right-a a {COLOR:#FFF; text-decoration: none;padding: 0}
+
+/* sidebar */
+        .sidebar{margin-left:-100%;width:240px;float:left;position:relative}
+        .sidebar_sep{background:#efefef;clear:both;float:none;height:5px;border-color:#ccc;border-style:solid;border-width:1px 0;margin:14px 0}
+        .sidebar_switch{text-indent:-10000px;width:16px;position:fixed;left:220px;top:45px;height:14px;cursor:pointer;z-index:100;display:block;opacity:.5}
+        .on_switch {background: url(../img/sidebar_switch.png) no-repeat 0 -19px}
+        .off_switch {background: url(../img/sidebar_switch.png) no-repeat 0 -1px}
+        .sidebar_inner form{padding:14px 0 9px 15px}
+        .sidebar_inner form input{margin:0}
+    
+        .sidebar_hidden .sidebar {display:none}
+        .sidebar_hidden .sidebar_switch {left:4px;}
+        .sidebar_hidden .main_content {margin:0;border-left:none}
+        .sidebar_hidden {background: #fff}
+        
+        .sidebar_hidden #maincontainer {background: #fff}
+        .sidebar_info {width:180px;position:relative;left:30px;bottom:10px}
+        .sidebar_info ul {padding:5px 10px;margin:0;font-size:11px;background:#fafafa;border:1px solid #e5e5e5;-webkit-border-radius: 6px;-moz-border-radius: 6px;-ms-border-radius: 6px;border-radius: 6px}
+        .sidebar_info ul li {line-height:26px;overflow:hidden;border-bottom:1px dashed #ccc}
+        .sidebar_info ul li:last-child {border:none}
+        .sidebar_info .act {float:right}
+        
+        .sidebar .accordion {border-top: 1px solid #ccc;margin-bottom: 20px;margin-right:1px}
+        .sidebar .accordion-heading {text-shadow: 1px 1px 0 #efefef;background: #e0e0e0;-webkit-box-shadow: inset 0px 1px 0px 0px #ececec;box-shadow: inset 0px 1px 0px 0px #ececec}
+        .sidebar .accordion-heading a:hover {background-color: #cfcfcf}
+        .sidebar .accordion-group{-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;margin-bottom:0;border-color:#ccc;border-style:solid;border-width:0 0 1px}
+        .sidebar .accordion-group a{color:#222;text-decoration:none!important}
+        .sidebar .accordion-group .active a{color:#fff}
+        .sidebar .accordion-group .accordion-heading a{color:#222}
+        .sidebar .accordion-inner{border-top:1px solid #ccc;background:#fafafa} 
+
+        .sdb_h_active a {background: url("../img/bullet_green.png") no-repeat 98% center}
+@media (min-width: 980px) {
+            .sidebar {position:fixed;top:40px;left:0;margin-left:0}
+            .navbar-fixed-top .nav-collapse {height:40px !important}
+            .navbar .nav > li > a {padding-top:10px}
+            /* fixed layout */ 
+            .gebo-fixed {max-width:940px;margin:0 auto}
+            .gebo-fixed header .container-fluid {max-width:940px;margin:0 auto}
+            .gebo-fixed #maincontainer {border-right:1px solid #ccc;border-left:1px solid #ccc}
+            .gebo-fixed .sidebar {left:50%;margin-left:-469px}
+            .gebo-fixed .sidebar_switch {left:50%;margin-left:-250px}
+            .gebo-fixed.sidebar_hidden .sidebar_switch {margin-left:-465px;left:50%}
+            .gebo-fixed .search_page .box_view .search_item {width:48%;height:210px;margin:0 0 2% 2%}
+            .gebo-fixed .activeMediaTable th.optional,.gebo-fixed .activeMediaTable td.optional{display:none}
+            .gebo-fixed .brand {width:120px}
+            
+            .sidebar_right #maincontainer {background-image: url(../img/main_bg_right.gif);background-position: right 0 }
+            .sidebar_right .sidebar {left:auto;right:-1px}
+            .sidebar_right .sidebar_switch {left:auto;right:6px}
+            .sidebar_right .main_content {margin-right:240px;margin-left:0;border-left:none}
+            .sidebar_right.sidebar_hidden #maincontainer {background: #fff}
+            .sidebar_right.sidebar_hidden .main_content {margin:0}
+            
+            .gebo-fixed.sidebar_right .sidebar {left:auto;right:50%;margin-left:0;margin-right:-470px}
+            .gebo-fixed.sidebar_right .sidebar_switch {left:auto;right:50%;margin-left:0;margin-right:-465px}
+            .gebo-fixed.sidebar_hidden.sidebar_right .sidebar_switch {laeft:auto;margin-left:0;margin-right:-465px;right:50%}
+            
+        }

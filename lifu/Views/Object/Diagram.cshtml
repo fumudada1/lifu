@@ -1,0 +1,149 @@
+﻿@using lifu.Models
+@model lifu.Models.Cases
+@{
+    ViewBag.Title = "新案推薦-平面配置";
+    List<Cases> caseses = ViewBag.cases;
+    int i = 0;
+}
+
+<div id="content">
+
+    <!-------------------------Left Start------------------------->
+    <div id="left">
+        <img src="~/images/subject_04.jpg" alt="新案推薦" width="162" height="103" />
+
+        <!-- 第1層 Start -->
+        <div class="lefmenu01">
+            <ul>
+                @foreach (var item in caseses)
+                {
+                    <li>
+                        @item.Subject
+                        <!-- 第2層 Start -->
+                        <ul>
+                            <li><a class="on" href="~/Object/Index/@item.Id">建案簡介</a></li>
+                            <li><a href="~/Object/Diagram/@item.Id">平面配置</a></li>
+                        </ul>
+                        <!-- 第2層 End -->
+                    </li>
+                }
+                <li class="green01">
+                    相關訊息
+                    <!-- 第2層 Start -->
+                    <ul>
+                        <li><a href="~/Object/Service">索取資料</a></li>
+                    </ul>
+                    <!-- 第2層 End -->
+                </li>
+
+            </ul>
+        </div>
+        <!-- 第1層 End -->
+
+    </div>
+
+    <!-------------------------Left End------------------------->
+    <!-------------------------Right Start------------------------->
+    <div id="right">
+
+        <!-------------------------主要內容 Start------------------------->
+        <div class="pathlink">
+            <a href="/">首頁</a> > 新案推薦 > @Model.Subject
+        </div>
+
+        <div class="ban_tite">
+            <p>@Model.Subject / <span>平面配置</span></p>
+        </div>
+
+        <!--平面配置 Start-->
+        <div class="box001">
+            @if (Model.Diagrams.Count > 0)
+            {
+                var firstDiagram = Model.Diagrams.OrderBy(x=>x.ListNum).First();
+                <div class="floorplantit">@firstDiagram.Subject</div>
+                <div class="container">
+                    <div class="zoomer">
+                        <div class="holder">
+                            <div class="image">
+                                <a id="imgURL" href="~/upfiles/images/@(firstDiagram.UpPicUrl)" rel="prettyPhoto" title="@firstDiagram.Subject"><img id="imgView" src="~/upfiles/images/s@(firstDiagram.UpPicUrl)" class="target" /></a>
+                               
+                            </div>
+
+                            <div class="console">
+                                <ul class="right">
+                                    <li><span id="zoomerView"></span></li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                        <div class="floorplan" style="display: none;">
+                            <img src="~/images/photo_05.jpg" width="307" height="169" />
+                        </div>
+
+                        <div class="thumbs">
+                            <ul>
+                                @foreach (var diagram in Model.Diagrams.OrderBy(x=>x.ListNum))
+                                {
+                                    <li class="thumbsli0@((i % 5) +1) floorNum">@diagram.Subject</li>
+                                    <input type="hidden" value="~/upfiles/images/s@(diagram.UpPicUrl)" />
+                                    <input type="hidden" value="~/upfiles/images/@(diagram.UpPicUrl)" />
+                                     <input type="hidden" value="@diagram.Subject" />
+                                    i++;
+                                }
+
+                            </ul>
+                        </div>
+
+                      
+
+                    </div>
+                </div>
+            }
+
+        </div>
+
+        <!--平面配置 End-->
+        <!-------------------------主要內容 End------------------------->
+
+    </div>
+    <!-------------------------Right End------------------------->
+
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" type="text/css" href="~/js/jquery.ad-gallery.css">
+
+    <link href="~/css/styles01.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/css/prettyLoader.css" type="text/css" media="all">
+    <link rel="stylesheet" href="~/css/prettyPhoto.css" type="text/css" media="all">
+
+    <script type="text/javascript" src="~/js/jquery.ad-gallery.js"></script>
+    <script type="text/javascript" src="~/js/list_detail.js"></script>
+    <script type="text/javascript" src="~/js/jquery-1.7.min.js"></script>
+
+    <script type="text/javascript" src="~/js/jquery-ui-1.8.16.custom.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery.prettyLoader.js"></script>
+    <script type="text/javascript" src="~/js/jquery.prettyPhoto.js"></script>
+    <script type="text/javascript" src="~/js/min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("a[rel^='prettyPhoto']").prettyPhoto();
+            $(".floorNum").click(function() {
+                var imgSURL = $(this).next().val();
+                var imgURL = $(this).next().next().val();
+                var subject = $(this).next().next().next().val();
+                $("#imgView").hide();
+                $("#imgURL").attr("href", imgURL).attr("title", subject);
+                $(".floorplantit").text(subject);
+                $("#imgView").attr("src", imgSURL).fadeIn("slow", function () {
+                    // Animation complete
+                });
+            });
+        });
+    </script>
+
+
+
+}

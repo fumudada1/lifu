@@ -1,0 +1,71 @@
+﻿@using lifu.Models
+@model lifu.Models.News
+
+@{
+    ViewBag.Title = "新增最新消息";
+}
+
+<h2>新增最新消息</h2>
+
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" })) {
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @ViewBag.Message
+    <fieldset>
+        <legend>News</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Subject)
+
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Subject,new { placeholder=ModelsAttributeHelper<lifu.Models.News>.GetDisplayName("Subject") })
+            @Html.ValidationMessageFor(model => model.Subject)
+       
+            
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UpImageUrl)
+
+        </div>
+        <div class="editor-field">
+            <input type="file" name="UpImageUrls" />
+       
+            
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ShortMemo)
+
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.ShortMemo,new { @style = "height: 150px",placeholder=ModelsAttributeHelper<lifu.Models.News>.GetDisplayName("ShortMemo") })
+            @Html.ValidationMessageFor(model => model.ShortMemo)
+       
+            
+        </div>
+
+        <p>
+            <input type="submit" value="新增" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("回列表", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+    <script>
+        $(document).ready(function() {
+            $(".datepicker").datepicker();
+        });
+    </script>
+    
+}

@@ -1,0 +1,12 @@
+﻿@if (Request.IsAuthenticated) {
+    <text>
+        <i class="icon-user"></i> 您好，@Html.ActionLink(User.Identity.Name, "ChangePassword", "Member", routeValues: null, htmlAttributes: new { @class = "username", title = "管理" }) ! @using (Html.BeginForm("LogOff", "Member", FormMethod.Post, new { id = "logoutForm" })) { @Html.AntiForgeryToken()<a href="javascript:document.getElementById('logoutForm').submit()"><span  class="logout">登出</span></a>}
+    </text>
+} else {
+
+    <a href="@(Url.Action("Login", "Member"))">
+        <i class="icon-user"></i>
+        <span>登入</span>
+    </a>
+
+}

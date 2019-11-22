@@ -1,0 +1,108 @@
+﻿@using lifu.Models
+@model lifu.Models.Cases
+@{
+    ViewBag.Title = "新案推薦";
+    List<Cases> caseses = ViewBag.cases;
+}
+
+<div id="content">
+
+    <!-------------------------Left Start------------------------->
+    <div id="left">
+        <img src="~/images/subject_04.jpg" alt="新案推薦" width="162" height="103" />
+
+        <!-- 第1層 Start -->
+        <div class="lefmenu01">
+            <ul>
+                @foreach (var item in caseses)
+                {
+                    <li>
+                        @item.Subject
+                        <!-- 第2層 Start -->
+                        <ul>
+                            <li><a class="on" href="~/Object/Index/@item.Id">建案簡介</a></li>
+                            <li><a href="~/Object/Diagram/@item.Id">平面配置</a></li>
+                        </ul>
+                        <!-- 第2層 End -->
+                    </li>
+                }
+                <li class="green01">
+                    相關訊息
+                    <!-- 第2層 Start -->
+                    <ul>
+                        <li><a href="~/Object/Service">索取資料</a></li>
+                    </ul>
+                    <!-- 第2層 End -->
+                </li>
+
+            </ul>
+        </div>
+        <!-- 第1層 End -->
+
+    </div>
+
+    <!-------------------------Left End------------------------->
+    <!-------------------------Right Start------------------------->
+    <div id="right">
+
+        <!-------------------------主要內容 Start------------------------->
+        <div class="pathlink">
+            首頁 > 新案推薦 > @Model.Subject
+        </div>
+
+        <div class="ban_tite">
+            <p>@Model.Subject / <span>建案簡介</span></p>
+        </div>
+
+        <div class="objectbox">
+            <div class="objectbox_photo">
+                @if (!string.IsNullOrEmpty(Model.ServerImageUrl))
+                {
+                    <img src="~/upfiles/images/@(Model.UpImageUrl)" width="225" />
+                }
+
+            </div>
+
+            @Html.Raw(Model.Article)
+
+        </div>
+
+        @if (Model.Pictureses.Count > 0)
+        {
+             <!--相簿 Start-->
+        <div class="bigbox01">
+            <div id="gallery" class="ad-gallery">
+                <div class="ad-image-wrapper"></div>
+                <!--<div class="ad-controls" ></div>-->
+                <div class="ad-nav">
+                    <div class="ad-thumbs">
+                        <ul class="ad-thumb-list">
+                            @foreach (var item in Model.Pictureses.OrderBy(x=>x.ListNum))
+                            {
+                                <li>
+                                    <a href="~/upfiles/images/@item.UpPicUrl">
+                                        <img src="~/upfiles/images/s@(item.UpPicUrl)" alt="@item.Subject" class="image0">
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--相簿 End-->
+        }
+       
+        <!-------------------------主要內容 End------------------------->
+
+    </div>
+    <!-------------------------Right End------------------------->
+
+</div>
+@section Scripts {
+   <script type="text/javascript" src="~/js/jquery.ad-gallery.js"></script>
+<script type="text/javascript" src="~/js/list_detail.js"></script>
+<link rel="stylesheet" type="text/css" href="~/js/jquery.ad-gallery.css" />
+
+}

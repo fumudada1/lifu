@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Title: -->
+  <title>@ViewBag.Title-管理系統</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <!-- Bootstrap Styles -->
+    <!-- Bootstrap 2.0.4 -->
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <!-- Font Awesome 2.0 -->
+      <link rel="stylesheet" href="~/Content/fonts/font-awesome/css/font-awesome.min.css" />
+      
+    <!-- /Font Awesome 2.0 -->
+    <!-- IcoMoon font pack -->
+      <link rel="stylesheet" href="~/Content/fonts/icomoon-pack-madmin-1.5/style.css" />
+      
+    <!-- /IcoMoon font pack -->
+  <!-- /Bootstrap Styles -->
+
+  <!-- Theme Styles -->
+
+    <!-- Libs Styles -->
+
+     
+    <!-- jQuery Page Slide Plugin -->
+    <link href="~/Scripts/jquery.pageslide/jquery.pageslide.css" rel="stylesheet" />   
+
+    <!-- /Libs Styles -->
+
+    <!-- Core Theme Styles -->
+    <!-- <link rel="stylesheet/less" href="media/styles/style.less" /> -->
+    <link href="~/Content/style.css" rel="stylesheet" />
+  <!-- /Theme Styles -->
+
+  <!-- CMS/Framework styles & scripts -->
+    <!-- ADD HERE -->
+    @Styles.Render("~/Content/css")
+  <!-- /CMS/Framework styles & scripts -->
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements:
+       load latest from Google Code, fall back to local if offline -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script>window.html5 || document.write('<script src="media/js/libs/fixes/html5.js"><\/script>')</script>
+  <![endif]-->
+
+  <!-- Icons: place favicon.ico and apple-touch-icon.png in the root directory (more: mathiasbynens.be/notes/touch-icons) -->
+    <!--
+    <link rel="shortcut icon" href="bootstrap/ico/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="media/bootstrap/ico/apple-touch-icon-114-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="media/bootstrap/ico/apple-touch-icon-72-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" href="media/bootstrap/ico/apple-touch-icon-57-precomposed.png" />
+    -->
+  <!-- /Icons -->
+
+  <!-- Fonts -->
+    <!-- ADD HERE -->
+  <!-- /Fonts -->
+
+  <!-- LESS -->
+  <!-- <script src="media/_tools/less-1.3.0.min.js"></script> -->
+</head>
+
+<body class="sidebar-max">
+
+<!--============================= Page Body =================================-->
+
+
+
+
+
+<!-- #topbar: Top Bar Menu -->
+<ul id="topbar" class="on-click">
+  <li class="pull-left">
+    <h1 id="topbar-title">
+      <i class="icon-cogs"></i>
+      <!-- <i class="icon-icomoon-grid-view"></i> -->
+      <!-- <span aria-hidden="true" class="icon-icomoon-grid-view"></span> -->
+      <a href="index-2.html">MADMIN Control Panel</a>
+    </h1>
+  </li>
+    <li>
+       
+       @* <a href="theme-docs.html">
+            <!--<i class="icon-book"></i>-->
+            <!-- <i class="icon-icomoon-grid-view"></i> -->
+            <!-- <span aria-hidden="true" class="icon-icomoon-grid-view"></span> -->
+            <!--<span>Theme Docs</span>-->
+        </a>*@
+    </li>
+    <li class="pull-right">
+         
+            @Html.Partial("_LoginPartial")
+    </li>
+
+</ul>
+<!-- /#topbar: Top Bar Menu -->
+
+
+<div class="container-fluid" id="container">
+
+    <!-- #sidebar: Sidebar -->
+    <div id="sidebar">
+
+      <!-- ul.sidebar-menu: Sidebar Menu -->
+      <ul class="sidebar-menu on-click" id="main-menu">
+       @Html.Raw(@ViewBag.menu) 
+      </ul>
+    <!-- /ul.sidebar-menu: Sidebar Menu --><a href="#" id="sidebar-resizer"> <i class="min icon-resize-small"></i> <i class="max icon-resize-full"></i> </a></div>
+    <!-- /#sidebar: Sidebar -->
+
+    <!-- #content: The Main Content Section
+
+      Just add the page content here for a regular page or use .page DIVs for panel pages.
+      Use Bootstrap fluid layout for best effect.
+
+    -->
+    <div id="content">
+
+      <div class="page" id="page-dashboard">
+           @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+
+      </div>  
+
+    </div>
+    <!-- /#content: The Main Content Section -->
+
+</div><!-- /.container-fluid#container -->
+
+
+
+<!--============================= /Page Body ================================-->
+
+<!-- Javascript: placed at the end of the document to speed up page loading
+     (generally gives more consistent behavior than 'defer') -->
+
+  <!-- Scripts will most likely break in IE6 and below, so why bother loading them? -->
+  <!--[if lte IE 6]><noscript><![endif]-->
+
+  <!-- CMS/Framework scripts -->
+    <!-- ADD HERE -->
+  <!-- /CMS/Framework scripts -->
+
+
+    @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+       
+    <!-- Bootstrap Components -->
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+
+    <!-- Theme Scripts -->
+    <script src="~/Scripts/madmin.js"></script>
+    <script src="~/Scripts/application.js"></script>
+     @*需要把Scripts拉到Head 裡來 *@
+        @RenderSection("scripts", required: false)
+
+
+<!-- /Javascript -->
+
+</body>
+</html>

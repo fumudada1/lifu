@@ -1,0 +1,83 @@
+﻿@using lifu.Models
+@model lifu.Models.Area
+@{
+    ViewBag.Title = "經典個案";
+    List<Area> areas = ViewBag.Areas;
+}
+
+<div id="content">
+
+    <!-------------------------Left Start------------------------->
+    <div id="left">
+        <img src="~/images/subject_03.jpg" alt="經典個案" width="162" height="103" />
+
+        <!-- 第1層 Start -->
+        <div class="lefmenu01">
+            <ul>
+                @foreach (var area in areas)
+                {
+                     if (area.Caseses.Any(x => x.Status == CaseStatus.經典個案))
+                    {
+                    <li>
+                        <a href="~/Classic/Diagram/@area.Id">
+                            @area.Subject
+                        </a>
+                        <!-- 第2層 Start -->
+                        <ul>
+                            @foreach (var item in area.Caseses.Where(x => x.Status == CaseStatus.經典個案))
+                            {
+                                <li><a href="~/Classic/Service/@item.Id">@item.Subject</a></li>
+                            }
+                        </ul>
+                        <!-- 第2層 End -->
+                    </li>
+                    }
+                }
+
+            </ul>
+        </div>
+        <!-- 第1層 End -->
+
+    </div>
+
+    <!-------------------------Left End------------------------->
+    <!-------------------------Right Start------------------------->
+    <div id="right">
+
+        <!-------------------------主要內容 Start------------------------->
+        <div class="pathlink">
+            首頁 > 經典個案 > @Model.Subject
+        </div>
+
+        <div class="ban_tite">
+            <p>@Model.Subject</p>
+        </div>
+
+        <!--封面 Start-->
+        <div class="classicbox">
+            <ul>
+                @foreach (var item in Model.Caseses)
+                {
+                      <li>
+                    <div class="classicbox_pho">
+                        <a href="~/Classic/Service/@item.Id">
+                            <img src="~/upfiles/images/S@(item.ServerImageUrl)" width="182"  border="0" />
+     
+                        </a>
+                        <p>@item.Subject</p>
+                    </div>
+                </li>
+                }
+              
+
+                
+            </ul>
+        </div>
+
+        <!--封面 End-->
+        <!-------------------------主要內容 End------------------------->
+
+    </div>
+    <!-------------------------Right End------------------------->
+
+</div>
